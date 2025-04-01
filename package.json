@@ -1,0 +1,23 @@
+{
+  "name": "cupcake-store-backend",
+  "version": "1.0.0",
+  "description": "Cupcake-Store-Backend",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/RodriAgos/Cupcake-Store-Backend.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/RodriAgos/Cupcake-Store-Backend/issues"
+  },
+  "homepage": "https://github.com/RodriAgos/Cupcake-Store-Backend#readme",
+  "dependencies": {
+    "express": "^5.1.0"
+  }
+}
