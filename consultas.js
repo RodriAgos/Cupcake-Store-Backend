@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 const { Pool } = require("pg");
@@ -220,3 +221,7 @@ module.exports = {
 //   loginUsuario,
 //   obtenerUsuarioPorId,
 // };
+=======
+// db.js contiene las consultas en mi rama, cucho.
+
+>>>>>>> Cucho_main_backend
