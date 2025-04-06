@@ -1,12 +1,18 @@
 CREATE DATABASE cupcake_store;
 
+CREATE TABLE admin_control (
+    has_admin BOOLEAN DEFAULT FALSE
+);
+
+INSERT INTO admin_control (has_admin) VALUES (FALSE);
+
 CREATE TABLE users (
     user_id SERIAL PRIMARY KEY,
     username VARCHAR(50) NOT NULL,
     email VARCHAR(100) NOT NULL UNIQUE,
     password VARCHAR(60) NOT NULL,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    role VARCHAR(20) DEFAULT 'customer' CHECK (role IN ('admin', 'customer'))
+    role VARCHAR(20) DEFAULT NULL CHECK (role IN ('admin', 'customer'))
 );
 
 CREATE TABLE cupcakes (
@@ -53,8 +59,9 @@ CREATE TABLE reviews (
 CREATE OR REPLACE FUNCTION set_default_role()
 RETURNS TRIGGER AS $$
 BEGIN
-    IF (SELECT COUNT(*) FROM users) = 0 THEN
+    IF (SELECT has_admin FROM admin_control LIMIT 1) = FALSE THEN
         NEW.role := 'admin';
+        UPDATE admin_control SET has_admin = TRUE;
     ELSE
         NEW.role := 'customer';
     END IF;
@@ -67,3 +74,27 @@ BEFORE INSERT ON users
 FOR EACH ROW
 WHEN (NEW.role IS NULL)
 EXECUTE FUNCTION set_default_role();
+
+CREATE OR REPLACE FUNCTION safe_insert_user()
+RETURNS TRIGGER AS $$
+BEGIN
+    LOCK TABLE admin_control IN EXCLUSIVE MODE;
+
+    IF (SELECT has_admin FROM admin_control LIMIT 1) = FALSE THEN
+        NEW.role := 'admin';
+        UPDATE admin_control SET has_admin = TRUE;
+    ELSE
+        NEW.role := 'customer';
+    END IF;
+    
+    RETURN NEW;
+END;
+$$ LANGUAGE plpgsql;
+
+DROP TRIGGER IF EXISTS assign_default_role ON users;
+
+CREATE TRIGGER assign_default_role_safe
+BEFORE INSERT ON users
+FOR EACH ROW
+WHEN (NEW.role IS NULL)
+EXECUTE FUNCTION safe_insert_user();
