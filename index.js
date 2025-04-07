@@ -1,16 +1,18 @@
 require('dotenv').config();
 const express = require('express');
 const cors = require('cors');
-const authRoutes = require('./routes/auth'); // Importa tus rutas de autenticación
+const authRoutes = require('./routes/auth');
+const productRoutes = require('./routes/products');
 
 const app = express();
 
 // Middlewares
-app.use(cors());               // Permite solicitudes desde otro origen (como React)
-app.use(express.json());       // Permite leer JSON desde el cuerpo de la solicitud
+app.use(cors());
+app.use(express.json());
 
 // Rutas
-app.use('/api/auth', authRoutes); // Todas las rutas de auth estarán en este prefijo
+app.use('/api/auth', authRoutes);
+app.use('/api/products', productRoutes)
 app.get('/home', (req, res) => {
   res.send("Hello World Express Js");
 });
