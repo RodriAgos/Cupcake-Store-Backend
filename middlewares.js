@@ -19,4 +19,12 @@ const verificarToken = (req, res, next) => {
   }
 };
 
-module.exports = { verificarToken };
+// Middleware para verificar si el usuario es admin
+function isAdmin(req, res, next) {
+  if (req.user.role !== 'admin') {
+    return res.status(403).json({ error: 'Acceso denegado: solo administradores' });
+  }
+  next();
+}
+
+module.exports = { verificarToken, isAdmin };
