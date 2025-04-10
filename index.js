@@ -3,6 +3,7 @@ const express = require('express');
 const cors = require('cors');
 const authRoutes = require('./routes/auth'); // Importa tus rutas de autenticación
 const cupcakeRoutes = require('./routes/cupcakes');
+const cartRoutes = require('./routes/cart');
 
 const app = express();
 
@@ -13,6 +14,7 @@ app.use(express.json());       // Permite leer JSON desde el cuerpo de la solici
 // Rutas
 app.use('/api/auth', authRoutes); // Todas las rutas de auth estarán en este prefijo
 app.use('/api/cupcakes', cupcakeRoutes);
+app.use('/api/cart', cartRoutes);
 app.get('/home', (req, res) => {
   res.send("Hello World Express Js");
 });
