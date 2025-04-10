@@ -4,7 +4,7 @@ const pool = require('../db');
 const { verificarToken, isAdmin } = require('../middlewares');
 
 // Obtener todos los cupcakes
-router.get('/', async (req, res) => {
+router.get('/cupcakes', async (req, res) => {
   try {
     const result = await pool.query('SELECT * FROM cupcakes ORDER BY cupcake_id');
     res.json(result.rows);
@@ -14,7 +14,7 @@ router.get('/', async (req, res) => {
 });
 
 // Obtener un cupcake por ID
-router.get('/:id', async (req, res) => {
+router.get('/cupcakes/:id', async (req, res) => {
   const { id } = req.params;
   try {
     const result = await pool.query('SELECT * FROM cupcakes WHERE cupcake_id = $1', [id]);
@@ -26,7 +26,7 @@ router.get('/:id', async (req, res) => {
 });
 
 // Crear un nuevo cupcake (solo admin)
-router.post('/', verificarToken, isAdmin, async (req, res) => {
+router.post('/cupcakes', verificarToken, isAdmin, async (req, res) => {
     const { name, description, price, image_url, stock } = req.body;
     try {
       const result = await pool.query(
@@ -35,12 +35,13 @@ router.post('/', verificarToken, isAdmin, async (req, res) => {
       );
       res.status(201).json(result.rows[0]);
     } catch (error) {
+      console.error(error);
       res.status(500).json({ error: 'Error al crear el cupcake' });
     }
   });
   
   // Actualizar un cupcake (solo admin)
-  router.put('/:id', verificarToken, isAdmin, async (req, res) => {
+  router.put('/cupcakes/:id', verificarToken, isAdmin, async (req, res) => {
     const { id } = req.params;
     const { name, description, price, image_url, stock } = req.body;
     try {
@@ -59,7 +60,7 @@ router.post('/', verificarToken, isAdmin, async (req, res) => {
   });
   
   // Eliminar un cupcake (solo admin)
-  router.delete('/:id', verificarToken, isAdmin, async (req, res) => {
+  router.delete('/cupcakes/:id', verificarToken, isAdmin, async (req, res) => {
     const { id } = req.params;
     try {
       const result = await pool.query('DELETE FROM cupcakes WHERE cupcake_id = $1 RETURNING *', [id]);
