@@ -1,0 +1,11 @@
+cupcake_id,name,description,price,image,rating,bgColor
+1,Choco classic,Una bomba con un bizcocho de chocolate...,2990,/images/chococlassicA.png,4.9,#614628
+2,Tuki cupcake,Lo más trasandino que ofrecemos...,2990,/images/tuki.png,4.5,#05bdeb
+3,Pie de Limón,Sabor clásico y delicioso...,2990,/images/limonA.png,4.9,#b7e23f
+4,Savage mint,Una experiencia para los fanáticos de la menta.,2990,/images/MintCupcakeA.png,4.0,#e0f2f1
+5,Nutella cupcake,Bizcocho de vainilla relleno de Nutella.,2990,/images/NutelloA.png,4.8,#8b6651
+6,Strawberry cupcake Forever,Con crema de frambuesa y frutilla fresca.,2990,/images/strawberryA.png,4.6,#f73f5d
+7,Kuky Kupcake,Decorado con una galleta completa.,2990,/images/KukyCupcakeA.png,4.4,#f3e5f5
+8,Baileys cupcake,Con shot de crema de Baileys.,2990,/images/BaileysCupcakeA.png,3.9,#ede7f6
+9,Donkey Kong Kupcake,Decorado con plátano confitado.,2990,/images/DonkeyCupCake.png,4.1,#fffde7
+10,Tritón cupcake,Decorado con galleta triturada.,2990,/images/TritonCupcakeA.png,4.2,#ede0d4
