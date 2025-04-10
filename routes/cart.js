@@ -70,4 +70,17 @@ router.delete('/:cupcake_id', verificarToken, async (req, res) => {
   }
 });
 
+// Vaciar todo el carrito del usuario
+router.delete('/', verificarToken, async (req, res) => {
+    const userId = req.user.user_id;
+  
+    try {
+      await pool.query('DELETE FROM cart WHERE user_id = $1', [userId]);
+      res.status(204).send();
+    } catch (error) {
+      console.error(error);
+      res.status(500).json({ error: 'Error al vaciar el carrito' });
+    }
+  });
+
 module.exports = router;
