@@ -51,7 +51,7 @@ router.post('/login', async (req, res) => {
       return res.status(401).json({ error: 'Contraseña incorrecta' });
     }
 
-    const token = jwt.sign({ email: user.email, role: user.role }, JWT_SECRET, {
+    const token = jwt.sign({ user_id: user.user_id, email: user.email, role: user.role }, JWT_SECRET, {
       expiresIn: '1h'
     });
 
