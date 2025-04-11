@@ -3,6 +3,7 @@ const express = require('express');
 const cors = require('cors');
 const authRoutes = require('./routes/auth');
 const productRoutes = require('./routes/productRoutes'); // 👈 nuevo
+const cartRoutes = require('./routes/cartRoutes'); // 👈 nuevo
 
 const app = express();
 
@@ -13,6 +14,7 @@ app.use(express.json());
 // Rutas
 app.use('/api/auth', authRoutes);
 app.use('/api/products', productRoutes); // 👈 nuevo
+app.use('/api/cart', cartRoutes); // 👈 nuevo
 
 app.get('/home', (req, res) => {
   res.send("Hello World Express Js");
