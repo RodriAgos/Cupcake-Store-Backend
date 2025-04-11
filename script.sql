@@ -15,13 +15,16 @@ CREATE TABLE users (
     role VARCHAR(20) DEFAULT NULL CHECK (role IN ('admin', 'customer'))
 );
 
-CREATE TABLE cupcakes (
+-- Modificada tabla cupcakes, se llama products y ahora e incluye stock.
+CREATE TABLE products (
     cupcake_id SERIAL PRIMARY KEY,
     name VARCHAR(100) NOT NULL,
     description TEXT,
     price INTEGER NOT NULL,
-    image_url TEXT,
-    stock INTEGER NOT NULL CHECK (stock >= 0)
+    stock INTEGER NOT NULL CHECK (stock >= 0),
+    image TEXT,
+    rating REAL,
+    bgColor TEXT
 );
 
 CREATE TABLE cart (
