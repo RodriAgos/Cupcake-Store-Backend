@@ -1,5 +1,5 @@
 const request = require('supertest');
-const app = require('../index'); // Asegúrate que index.js exporta `app`
+const app = require('../index');
 
 let token = '';
 
@@ -30,7 +30,7 @@ describe('Autenticación y rutas protegidas', () => {
 
     expect(res.statusCode).toBe(200);
     expect(res.body).toHaveProperty('token');
-    token = res.body.token; // Guardamos el token para la siguiente prueba
+    token = res.body.token;
   });
 
   // 3. Acceso sin token: debe fallar

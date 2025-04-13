@@ -10,7 +10,7 @@ router.get('/', verificarToken, (req, res) => {
 
 // Ruta de checkout
 router.post('/checkout', verificarToken, async (req, res) => {
-  const { cart } = req.body; // [{ cupcake_id, quantity }]
+  const { cart } = req.body;
   const userId = req.user.id;
 
   try {

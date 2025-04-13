@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const { getAllProducts, getProductById } = require('../controllers/productController'); // ✅ Asegúrate de que las funciones sean importadas correctamente
+const { getAllProducts, getProductById } = require('../controllers/productController');
 
 // Ruta para obtener todos los productos
 router.get('/', getAllProducts);

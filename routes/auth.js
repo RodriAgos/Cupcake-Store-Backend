@@ -1,7 +1,7 @@
 const express = require('express');
 const jwt = require('jsonwebtoken');
 const bcrypt = require('bcryptjs');
-const pool = require('../db'); // Asegúrate de tener este archivo creado correctamente
+const pool = require('../db');
 const { verificarToken } = require('../middlewares');
 
 const router = express.Router();
