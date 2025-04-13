@@ -30,7 +30,7 @@ CREATE TABLE products (
 CREATE TABLE cart (
     cart_id SERIAL PRIMARY KEY,
     user_id INTEGER REFERENCES users(user_id) ON DELETE CASCADE,
-    cupcake_id INTEGER REFERENCES cupcakes(cupcake_id) ON DELETE CASCADE,
+    cupcake_id INTEGER REFERENCES products(cupcake_id) ON DELETE CASCADE,
     quantity INTEGER NOT NULL CHECK (quantity > 0),
     UNIQUE (user_id, cupcake_id)
 );
@@ -46,14 +46,14 @@ CREATE TABLE orders (
 CREATE TABLE order_details (
     order_detail_id SERIAL PRIMARY KEY,
     order_id INTEGER REFERENCES orders(order_id) ON DELETE CASCADE,
-    cupcake_id INTEGER REFERENCES cupcakes(cupcake_id) ON DELETE CASCADE,
+    cupcake_id INTEGER REFERENCES products(cupcake_id) ON DELETE CASCADE,
     quantity INTEGER NOT NULL CHECK (quantity > 0)
 );
 
 CREATE TABLE reviews (
     review_id SERIAL PRIMARY KEY,
     user_id INTEGER REFERENCES users(user_id) ON DELETE CASCADE,
-    cupcake_id INTEGER REFERENCES cupcakes(cupcake_id) ON DELETE CASCADE,
+    cupcake_id INTEGER REFERENCES products(cupcake_id) ON DELETE CASCADE,
     rating SMALLINT NOT NULL CHECK (rating BETWEEN 1 AND 5),
     comment VARCHAR(50),
     UNIQUE (user_id, cupcake_id)
